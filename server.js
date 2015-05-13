@@ -10,7 +10,8 @@ var mqttClient = require('./mqtt.js');
 app.use(bodyParser.json());
 
 server.listen(3000);
-mongoose.connect('mongodb://' + config.db.host + ':' + config.db.port + '/' + config.db.database);
+var mongooseURI = process.env.MONGOLAB_URI || 'mongodb://' + config.db.host + ':' + config.db.port + '/' + config.db.database
+mongoose.connect(mongooseURI);
 
 require('./schema.js');
 
