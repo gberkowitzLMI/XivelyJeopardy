@@ -1,5 +1,5 @@
 angular.module('Jeopardy').factory('buzzer',function($http, $rootScope){
-    var socket = io(window.location.host + window.location.port);
+    var socket = io(window.location.host + ":4000");
 
     socket.on('buzz', function(buzzerId){
         console.log("Received buzz message for buzzer " + buzzerId);
