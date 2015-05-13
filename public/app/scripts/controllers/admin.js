@@ -5,7 +5,12 @@ angular.module('Jeopardy').controller('Admin', function($scope,score,buzzer){
         $scope.scores = res;
     });
 
-    $scope.buzzerName = buzzer.buzzerName;
+    $scope.buzzerName = ''
+
+    $scope.$on('buzz', function(event, buzzerId){
+        $scope.buzzerName = buzzerId;
+        $scope.$apply();
+    });
 
     $scope.correct = function(teamId){
         score.addPoints(teamId,$scope.scoreValue, function(data){
@@ -25,5 +30,6 @@ angular.module('Jeopardy').controller('Admin', function($scope,score,buzzer){
 
     $scope.clearBuzzer = function(){
         buzzer.clearBuzzer(function(){});
+        $scope.buzzerName = '';
     }
 });

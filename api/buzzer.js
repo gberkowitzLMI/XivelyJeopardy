@@ -25,15 +25,16 @@ var handleBuzzer = function(buzzerId){
     Game.findOne({}, function(err,game){
         if(game.buzzerListening){
             game.buzzerListening = false;
-            game.buzzerName = 'Team ' + buzzerId;
+            game.buzzerName = buzzerId.toString();
             game.save();
+            alertClients(buzzerId);
         }
     });
-    alertClients(buzzerId);
+    
 }
 
 var alertClients = function(buzzerId){
-    io.emit('buzz', {buzzerId: buzzerId});
+    io.emit('buzz', buzzerId.toString());
 }
 
 module.exports = {

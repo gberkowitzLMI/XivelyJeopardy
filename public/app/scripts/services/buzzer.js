@@ -1,13 +1,12 @@
-angular.module('Jeopardy').factory('buzzer', ['$http',function($http){
-    var buzzerName = 'Test';
+angular.module('Jeopardy').factory('buzzer',function($http, $rootScope){
     var socket = io('http://localhost:4000');
 
     socket.on('buzz', function(buzzerId){
-        buzzerName = buzzerId;
+        console.log("Received buzz message for buzzer " + buzzerId);
+        $rootScope.$broadcast('buzz', buzzerId);
     });
 
     return {
-        buzzerName: buzzerName,
         startListening: function(s,e){
             $http.post('/api/startListening')
             .success(s)
@@ -24,4 +23,4 @@ angular.module('Jeopardy').factory('buzzer', ['$http',function($http){
             .error(e)
         }
     }
-}]);
+});
