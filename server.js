@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+var io = require('socket.io')(server);
 var config = require('./config.js');
 var mqttClient = require('./mqtt.js');
 
@@ -36,6 +36,12 @@ app.post('/api/score', function(req,res){
 });
 
 var buzzer = require('./api/buzzer.js');
+
+//This seems poor
+buzzer.setAlertFunction(function(buzzerId){
+    io.emit("buzz", buzzerId.toString());
+});
+
 app.post('/api/startListening', function(req,res){
     buzzer.startListening();
     res.sendStatus(200);
