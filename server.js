@@ -50,6 +50,11 @@ app.get('/api/buzzer', function(req,res){
     });
 });
 
+app.post('/api/buzzer', function(req,res){
+    mqttClient.pressBuzzer(req.body.buzzerId);
+    res.sendStatus(200);
+})
+
 //all other routes should default to angular router
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/app/index.html');

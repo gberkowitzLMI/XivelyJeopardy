@@ -16,6 +16,10 @@ var client = mqtt.connect({
    password: password
 });
 
+exports.pressBuzzer = function(buzzerId){
+  client.publish(topicPrefix, buzzerId.toString());
+}
+
 exports.connectMQTT = function(req, res) {
 
    // Listening to messages on the mqtt queue
@@ -32,12 +36,5 @@ exports.connectMQTT = function(req, res) {
       console.log('Topic: ' + topic + ' Message: ' + buzzerId);
       buzzer.handleBuzzer(buzzerId);
    });
-
-   var publishTestMessages = function(){
-    for (var i = 0; i < 11; i++){
-        console.log('Publishing message ' + i);
-        client.publish(topicPrefix, "HELLO!");
-      }
-    }
 
 }
