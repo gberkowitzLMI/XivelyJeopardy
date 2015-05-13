@@ -23,6 +23,10 @@ angular
         templateUrl: '/app/views/admin.html',
         controller: 'Admin'
       })
+      .when('/buzzer', {
+        templateUrl: '/app/views/softBuzzer.html',
+        controller: 'SoftBuzzer'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,19 +1,17 @@
-angular.module('Jeopardy').factory('score', function(){
-    //register socket listener for score changes
-      var socket = io.connect(window.location.hostname);
-      var score = 300;
-      var updateScoreValue = function(){
-        //GET score
-      };
-      //socket.on('scoreChanged', updateScoreValue);
-
-      return {
-        value: score,
-        correct: function(team,scoreValue){
-            //Add score to team
+angular.module('Jeopardy').factory('score', ['$http', function($http){
+    return {
+        addPoints: function(team, points, success, failure){
+            $http.post('/api/score',{
+                "team": team,
+                "points": points
+            })
+            .success(success)
+            .error(failure);
         },
-        incorrect: function(team,scoreValue){
-            //Subtract score from team
+        getScore: function(success,failure){
+            $http.get('/api/score')
+            .success(success)
+            .error(failure)
         }
-      }
-});
+    }
+}]);

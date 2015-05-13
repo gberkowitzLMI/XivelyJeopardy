@@ -1,4 +1,6 @@
 <div>
-  <div>Buzzed in Team: </div>
-  <div>Score: {{score}}</div>
+  <div>Buzzed in Team: {{buzzerName}}</div>
+  <ul ng-repeat="score in scores">Current Scores
+    <li>Team {{score.team}}: {{score.points}}</li>
+  </ul>
 <div>
