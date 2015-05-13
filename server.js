@@ -8,8 +8,9 @@ var config = require('./config.js');
 var mqttClient = require('./mqtt.js');
 
 app.use(bodyParser.json());
+app.set('port', (process.env.PORT || 5000));
 
-server.listen(3000);
+server.listen(app.get('port'));
 var mongooseURI = process.env.MONGOLAB_URI || 'mongodb://' + config.db.host + ':' + config.db.port + '/' + config.db.database
 mongoose.connect(mongooseURI);
 
