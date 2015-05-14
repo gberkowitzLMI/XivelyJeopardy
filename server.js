@@ -34,6 +34,7 @@ app.get('/api/score', function(req,res){
 });
 app.post('/api/score', function(req,res){
     score.addPoints(req.body.team, req.body.points);
+    res.sendStatus(200);
 });
 
 var buzzer = require('./api/buzzer.js');
