@@ -29,7 +29,7 @@
   z-index: -1;
 }
 
-.scoreboard.buzzed {
+#scoreboard.buzzed {
   background-color: #FFC966;
 }
 
