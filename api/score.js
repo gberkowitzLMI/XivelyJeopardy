@@ -4,9 +4,18 @@ var config = require ('../config.js').game;
 var alertFunction = null;
 
 var addPoints = function(team,points){
-    Game.update({'score.team': team},{'$inc' : {'score.$.points': points}}).exec();
+    // Game.update({'score.team': team},{'$inc' : {'score.$.points': points}}).exec();
+    // Game.findOne({}, function(err,doc){
+    //     alertFunction(doc.score);
+    // });
+
     Game.findOne({}, function(err,doc){
+        for (var i in doc.score)
+            if(doc.score[i].team == team)
+                doc.score[i].points += points;
+            
         alertFunction(doc.score);
+        doc.save();
     });
 }
 
