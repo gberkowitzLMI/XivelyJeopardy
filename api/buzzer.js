@@ -31,14 +31,11 @@ var handleBuzzer = function(buzzerId, callback){
             alertFunction(buzzerId);
         }
     });
-    
 }
 
 var setAlertFunction = function(_alertFunction){
     alertFunction = _alertFunction;
 }
-
-
 
 module.exports = {
     clearBuzzer: clearBuzzer,

@@ -21,8 +21,6 @@ exports.pressBuzzer = function(buzzerId){
 }
 
 exports.connectMQTT = function(req, res) {
-
-   // Listening to messages on the mqtt queue
    console.log("Connecting to Broker");
    client.on('connect', function() {
       console.log("Connected");

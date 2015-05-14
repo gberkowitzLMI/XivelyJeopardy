@@ -7,8 +7,6 @@ config.game = {}
 
 config.db.host = process.env.DB_HOST || 'localhost';
 config.db.port = process.env.DB_PORT || 27017;
-// config.db.username = process.env.DB_USERNAME || 'putujooxlyfpep';
-// config.db.password = process.env.DB_PASSWORD || 'uO1GsyvEHAx5lRAVTJA23X_fAD';
 config.db.database = process.env.DB_NAME || 'jeopardy';
 
 config.mqtt.host = process.env.MQTT_HOST || 'broker.xively.com';
