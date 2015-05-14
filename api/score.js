@@ -1,9 +1,13 @@
 var Game = require('../schema.js').Game;
 var config = require ('../config.js').game;
 
-var addPoints = function(team,points,callback){
+var alertFunction = null;
+
+var addPoints = function(team,points){
     Game.update({'score.team': team},{'$inc' : {'score.$.points': points}}).exec();
-    getScore(callback);
+    Game.findOne({}, function(err,doc){
+        alertFunction(doc.score);
+    });
 }
 
 var getScore = function(callback){
@@ -28,10 +32,15 @@ var resetGame = function(){
     });
 }
 
+var setAlertFunction = function(_alertFunction){
+    alertFunction = _alertFunction;
+}
+
 resetGame();
 
 module.exports = {
     addPoints: addPoints,
     getScore: getScore,
-    resetGame: resetGame
+    resetGame: resetGame,
+    setAlertFunction: setAlertFunction
 }

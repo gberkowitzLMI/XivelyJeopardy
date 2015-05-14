@@ -23,21 +23,20 @@ app.use(express.static(__dirname + '/public'));
 
 //add api routes first
 var score = require('./api/score.js');
+score.setAlertFunction(function(score){
+    io.emit("score", score);
+});
 
 app.get('/api/score', function(req,res){
     score.getScore(function(err,doc){
-        res.json(doc);
+        res.send(doc);
     });
 });
 app.post('/api/score', function(req,res){
-    score.addPoints(req.body.team, req.body.points, function(err,_score){
-        res.send(_score);
-    });
+    score.addPoints(req.body.team, req.body.points);
 });
 
 var buzzer = require('./api/buzzer.js');
-
-//This seems poor
 buzzer.setAlertFunction(function(buzzerId){
     io.emit("buzz", buzzerId.toString());
 });
@@ -49,6 +48,7 @@ app.post('/api/startListening', function(req,res){
 
 app.post('/api/clearBuzzer', function(req,res){
     buzzer.clearBuzzer();
+    io.emit("buzz", "clear");
     res.sendStatus(200);
 });
 

@@ -27,6 +27,10 @@ angular
         templateUrl: '/app/views/softBuzzer.html',
         controller: 'SoftBuzzer'
       })
+      .when('/scoreboard/:teamId',{
+        templateUrl: 'app/views/scoreboard.html',
+        controller: 'Scoreboard'
+      })
       .otherwise({
         redirectTo: '/'
       });

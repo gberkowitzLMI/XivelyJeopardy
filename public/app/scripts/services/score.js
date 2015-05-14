@@ -1,4 +1,10 @@
-angular.module('Jeopardy').factory('score', ['$http', function($http){
+angular.module('Jeopardy').factory('score', function($http, $rootScope){
+    var socket = io(window.location.host);
+
+    socket.on('score', function(score){
+        $rootScope.$broadcast('score', score);
+    });
+
     return {
         addPoints: function(team, points, success, failure){
             $http.post('/api/score',{
@@ -14,4 +20,4 @@ angular.module('Jeopardy').factory('score', ['$http', function($http){
             .error(failure)
         }
     }
-}]);
+});

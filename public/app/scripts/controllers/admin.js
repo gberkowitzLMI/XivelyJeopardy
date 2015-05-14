@@ -12,16 +12,17 @@ angular.module('Jeopardy').controller('Admin', function($scope,score,buzzer){
         $scope.$apply();
     });
 
+    $scope.$on('score', function(event, _scores){
+        $scope.scores = _scores;
+        $scope.$apply();
+    });
+
     $scope.correct = function(teamId){
-        score.addPoints(teamId,$scope.scoreValue, function(data){
-            $scope.scores = data;
-        });
+        score.addPoints(teamId,$scope.scoreValue);
     }
 
     $scope.incorrect = function(teamId){
-        score.addPoints(teamId,-$scope.scoreValue, function(data){
-            $scope.scores = data;
-        });
+        score.addPoints(teamId,-$scope.scoreValue);
     }
 
     $scope.startListening = function(){
