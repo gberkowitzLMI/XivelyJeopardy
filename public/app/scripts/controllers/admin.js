@@ -1,5 +1,5 @@
 angular.module('Jeopardy').controller('Admin', function($scope,score,buzzer){
-    $scope.scoreValue = 0;
+    $scope.scoreValue = 100;
 
     score.getScore(function(res){
         $scope.scores = res;
@@ -18,11 +18,11 @@ angular.module('Jeopardy').controller('Admin', function($scope,score,buzzer){
     });
 
     $scope.correct = function(teamId){
-        score.addPoints(teamId,$scope.scoreValue);
+        score.addPoints(teamId,$scope.scoreValue, function(){});
     }
 
     $scope.incorrect = function(teamId){
-        score.addPoints(teamId,-$scope.scoreValue);
+        score.addPoints(teamId,-$scope.scoreValue, function(){});
     }
 
     $scope.startListening = function(){
