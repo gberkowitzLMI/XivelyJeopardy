@@ -48,7 +48,7 @@ app.post('/api/startListening', function(req,res){
 
 app.post('/api/clearBuzzer', function(req,res){
     buzzer.clearBuzzer();
-    io.emit("buzz", "clear");
+    io.emit("buzz", "");
     res.sendStatus(200);
 });
 
