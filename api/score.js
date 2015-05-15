@@ -20,10 +20,8 @@ var getScore = function(callback){
 }
 
 var resetGame = function(){
-    //delete old games and initialize a new one
     Game.remove({}, function(){
-        var game = newGame();
-        game.save();
+        newGame().save();
     });
 }
 
