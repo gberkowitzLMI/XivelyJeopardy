@@ -22,7 +22,24 @@ var getScore = function(callback){
 var resetGame = function(){
     //delete old games and initialize a new one
     Game.remove({}, function(){
-        var game = new Game({
+        var game = newGame();
+        game.save();
+    });
+}
+
+var setupNewGame = function(){
+    Game.findOne({}, function(err,doc){
+        if(!doc && !err)
+            newGame().save();
+    });
+}
+
+var setAlertFunction = function(_alertFunction){
+    alertFunction = _alertFunction;
+}
+
+var newGame = function(){
+    var game = new Game({
             buzzerListening: false,
             buzzerName: "",
             score: []
@@ -31,15 +48,11 @@ var resetGame = function(){
         for(var i = 1; i <= config.numTeams ; i++)
             game.score.push({team: i, points:0});
 
-        game.save();
-    });
+    return game;
 }
 
-var setAlertFunction = function(_alertFunction){
-    alertFunction = _alertFunction;
-}
+setupNewGame();
 
-resetGame();
 
 module.exports = {
     addPoints: addPoints,
