@@ -34,6 +34,7 @@ app.get('/api/score', function(req,res){
 });
 app.post('/api/score', function(req,res){
     score.addPoints(req.body.team, req.body.points);
+    buzzer.clearBuzzer();
     res.sendStatus(200);
 });
 
@@ -62,7 +63,7 @@ app.get('/api/buzzer', function(req,res){
 app.post('/api/buzzer', function(req,res){
     mqttClient.pressBuzzer(req.body.buzzerId);
     res.sendStatus(200);
-})
+});
 
 //all other routes should default to angular router
 app.get('/', function (req, res) {

@@ -2,8 +2,9 @@ angular.module('Jeopardy').factory('score', function($http, $rootScope){
     var socket = io(window.location.host);
 
     socket.on('score', function(score){
-        console.log("Score changed");
+        console.log("Score changed, resetting buzzer value");
         $rootScope.$broadcast('score', score);
+        $rootScope.$broadcast('buzz', '');
     });
 
     return {
