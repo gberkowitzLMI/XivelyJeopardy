@@ -49,7 +49,7 @@
   -webkit-border-radius:5px;
   border-radius:5px;
   border:1px solid #566963;
-  display:inline-block;
+  display:inline;
   cursor:pointer;
   color:#ffffff;
   font-family:Arial;
@@ -79,8 +79,21 @@
   font-size: 2em;
 }
 
-#adminPanel .score {
+#adminPanel #pointsValue {
   height: 70px;
   width: 300px;
   font-size: 2em;
+}
+
+#adminPanel #buzzerValue {
+  font-size: 6em;
+  position: fixed;
+  right: 20%;
+  top: 20%;
+  color: red;
+}
+
+#adminPanel .teamScore {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

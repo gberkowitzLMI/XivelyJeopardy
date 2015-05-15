@@ -1,13 +1,14 @@
 <div id="adminPanel">
-  <div>Buzzed in Team: {{buzzerName}}</div>
-    <br/>
+  <div id="buzzerValue">{{buzzerName}}</div>
     <div>Current question value</div>
-    <input class="score" type="number" min=0 ng-model="scoreValue"></input>
-    <ul ng-repeat="score in scores">
-        <li>Team {{score.team}}: {{score.points}}</li>
-        <button class="adminPanelButton" ng-click="correct(score.team)">Correct</button>
-        <button class="adminPanelButton" ng-click="incorrect(score.team)">Incorrect</button>
-    </ul>
+    <input id="pointsValue" type="number" min=0 ng-model="scoreValue"></input>
+    <div id="scores" ng-repeat="score in scores">
+        <div class="teamScore">
+            Team {{score.team}}: {{score.points}}
+            <button class="adminPanelButton" ng-click="correct(score.team)">Correct</button>
+            <button class="adminPanelButton" ng-click="incorrect(score.team)">Incorrect</button>
+        </div>
+    </div>
 
     <div>Other functions</div>
     <button class="adminPanelButton" ng-click="startListening()">Accept buzzer input</button>

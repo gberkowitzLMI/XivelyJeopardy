@@ -5,7 +5,9 @@ angular.module('Jeopardy').controller('Admin', function($scope,score,buzzer){
         $scope.scores = res;
     });
 
-    $scope.buzzerName = ''
+    buzzer.getBuzzer(function(res){
+        $scope.buzzerName = res;
+    });
 
     $scope.$on('buzz', function(event, buzzerId){
         $scope.buzzerName = buzzerId;
